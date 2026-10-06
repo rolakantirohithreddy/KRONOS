@@ -1,0 +1,24 @@
+{
+  "stage1": {
+    "max_depth": 7,
+    "learning_rate": 0.2536999076681772,
+    "n_estimators": 639,
+    "subsample": 0.8394633936788146,
+    "colsample_bytree": 0.6624074561769746,
+    "min_child_weight": 2,
+    "gamma": 0.2904180608409973,
+    "reg_alpha": 2.9154431891537547,
+    "reg_lambda": 0.2537815508265665
+  },
+  "stage2": {
+    "max_depth": 7,
+    "learning_rate": 0.1440926781137042,
+    "n_estimators": 666,
+    "subsample": 0.7473512970963563,
+    "colsample_bytree": 0.8170676542063191,
+    "min_child_weight": 4,
+    "gamma": 0.021579818011342254,
+    "reg_alpha": 0.5887783006534909,
+    "reg_lambda": 0.2775584010377248
+  }
+}

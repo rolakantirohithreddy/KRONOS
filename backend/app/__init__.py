@@ -1,0 +1,1 @@
+"""KRONOS backend application package."""

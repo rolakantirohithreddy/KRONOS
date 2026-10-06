@@ -1,0 +1,66 @@
+[
+  {
+    "attack_type": "DDoS",
+    "mitre_technique": "T1498",
+    "technique_name": "Network Denial of Service",
+    "description": "An attacker overwhelms an IoT device or network link with traffic from one or many sources. Constrained device resources and shared wireless links can make legitimate services unavailable quickly.",
+    "typical_impact": "Service outage, congestion, and loss of availability for devices and dependent services.",
+    "recommended_mitigation": "Rate-limit abusive sources, apply upstream traffic filtering, and isolate affected IoT segments while preserving essential management access."
+  },
+  {
+    "attack_type": "DoS",
+    "mitre_technique": "T1499",
+    "technique_name": "Endpoint Denial of Service",
+    "description": "An attacker targets an individual IoT endpoint with requests or malformed traffic that exhausts its CPU, memory, or connection capacity. The device may become unresponsive or repeatedly reboot.",
+    "typical_impact": "Loss of availability for the targeted device and any service that depends on it.",
+    "recommended_mitigation": "Temporarily restrict traffic to the affected endpoint, block abusive sources, and restore the device from a trusted state after reviewing its logs."
+  },
+  {
+    "attack_type": "Recon",
+    "mitre_technique": "T1046",
+    "technique_name": "Network Service Discovery",
+    "description": "An attacker scans IoT network ranges and devices to identify reachable hosts, open ports, and exposed services. The collected inventory can guide later intrusion attempts.",
+    "typical_impact": "Exposure of network topology and attack surface, increasing the likelihood of targeted compromise.",
+    "recommended_mitigation": "Restrict scanning sources at network boundaries, review exposed services, and verify that device management interfaces are reachable only from trusted segments."
+  },
+  {
+    "attack_type": "Mirai",
+    "mitre_technique": "T1078",
+    "technique_name": "Valid Accounts",
+    "description": "Mirai-style activity commonly discovers IoT devices exposed with weak or default credentials and attempts to gain access. Compromised devices may then be controlled remotely and used in botnet activity.",
+    "typical_impact": "Device takeover, botnet enrollment, data exposure, and participation in further attacks.",
+    "recommended_mitigation": "Isolate suspected devices, rotate default or reused credentials, disable unnecessary remote management, and update firmware from the vendor's trusted source."
+  },
+  {
+    "attack_type": "Spoofing",
+    "mitre_technique": "T1557",
+    "technique_name": "Adversary-in-the-Middle",
+    "description": "An attacker impersonates a trusted IoT device or network peer by falsifying an address or identity. This can redirect traffic or allow unauthorized devices to participate in local communications.",
+    "typical_impact": "Traffic interception, unauthorized network access, or manipulation of device communications.",
+    "recommended_mitigation": "Validate device identities using authenticated network access, inspect address-resolution and DHCP changes, and quarantine unrecognized devices pending verification."
+  },
+  {
+    "attack_type": "BruteForce",
+    "mitre_technique": "T1110",
+    "technique_name": "Brute Force",
+    "description": "An attacker repeatedly tries passwords or other authentication secrets against an IoT login service. Weak, reused, or default credentials make successful access more likely.",
+    "typical_impact": "Unauthorized account access, device takeover, and possible access to other systems using reused credentials.",
+    "recommended_mitigation": "Rate-limit and temporarily block repeated failures, rotate affected credentials, enforce unique strong secrets, and disable unused login services."
+  },
+  {
+    "attack_type": "Web-based",
+    "mitre_technique": "T1190",
+    "technique_name": "Exploit Public-Facing Application",
+    "description": "An attacker targets a vulnerable web interface or API exposed by an IoT device or its management platform. Crafted requests may exploit weak input handling or an unpatched component.",
+    "typical_impact": "Unauthorized control, data disclosure, or service disruption through a compromised web-facing component.",
+    "recommended_mitigation": "Restrict access to the management interface, review web and device logs, apply vendor security updates, and isolate the host if exploitation is suspected."
+  },
+  {
+    "attack_type": "Benign",
+    "mitre_technique": "T0000",
+    "technique_name": "No Malicious Technique Identified",
+    "description": "The observed network flow is classified as normal or expected activity rather than a recognized attack. This classification is based on the available telemetry and does not guarantee that all activity is safe.",
+    "typical_impact": "No malicious impact is indicated by this detection; continue routine monitoring for changes or related alerts.",
+    "recommended_mitigation": "No containment action is indicated from this result alone; retain routine monitoring and correlate with related alerts before closing an incident."
+  }
+]

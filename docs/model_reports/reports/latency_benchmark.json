@@ -1,0 +1,7 @@
+{
+  "single_sample_mean_ms": 430.84180294496036,
+  "single_sample_p95_ms": 464.04575424712675,
+  "single_sample_p99_ms": 476.53080599498924,
+  "batch_1000_total_ms": 5.6572799949208274,
+  "batch_1000_per_sample_ms": 0.0056572799949208274
+}

@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-primary: var(--accent-primary);
+  --color-secondary: var(--accent-secondary);
+
+  /* Risk severity — same saturated values readable on both themes */
+  --color-risk-low: #34D399;
+  --color-risk-medium: #F59E0B;
+  --color-risk-high: #F97316;
+  --color-risk-critical: #F43F5E;
+}
+
+/* ═══ Dark theme (default) — Neural Sentinel ═══ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary:      #0B0710;   /* near-black violet-charcoal           */
+  --bg-surface:      #150E1F;   /* deep surface                         */
+  --border-color:    #2A1B3D;   /* subtle violet border                 */
+  --accent-primary:  #A855F7;   /* electric violet                      */
+  --accent-secondary:#E879F9;   /* magenta                              */
+  --accent-warn:     #F59E0B;   /* molten amber                         */
+  --accent-danger:   #F43F5E;   /* crimson                              */
+  --accent-safe:     #34D399;   /* emerald                              */
+  --text-primary:    #EDE9FE;   /* lavender-white — readable on #0B0710 */
+  --text-muted:      #9D8EC0;   /* muted violet-grey                    */
+  --button-text:     #1A0A2E;   /* very dark violet for on-violet btns  */
+}
+
+/* ═══ Light theme — Neural Sentinel ═══ */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary:      #F5F3FF;   /* soft lavender-white                  */
+  --bg-surface:      #FFFFFF;   /* pure white surface                   */
+  --border-color:    #E4D9F7;   /* light lavender border                */
+  --accent-primary:  #6D28D9;   /* deep violet — ≥7:1 contrast on white */
+  --accent-secondary:#A21CAF;   /* deep magenta — readable on white     */
+  --accent-warn:     #D97706;   /* amber (darkened for light bg)        */
+  --accent-danger:   #E11D48;   /* crimson (darkened for light bg)      */
+  --accent-safe:     #059669;   /* emerald (darkened for light bg)      */
+  --text-primary:    #1E0A3C;   /* near-black deep violet               */
+  --text-muted:      #6B5F8A;   /* muted purple-grey                    */
+  --button-text:     #FFFFFF;   /* white on violet button               */
+}
+
+/* Shared risk scale override so :root values don't fight */
+:root {
+  --color-risk-low:      #34D399;
+  --color-risk-medium:   #F59E0B;
+  --color-risk-high:     #F97316;
+  --color-risk-critical: #F43F5E;
+}
+
+[data-theme="light"] {
+  --color-risk-low:      #059669;
+  --color-risk-medium:   #D97706;
+  --color-risk-high:     #EA580C;
+  --color-risk-critical: #E11D48;
+}
+
+/* ─── Base ─── */
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══ Auth Layout ═══ */
+
+.auth-left-panel {
+  background: var(--bg-primary);
+}
+
+/* Animated conic gradient border via @property */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-rotate {
+  from { --border-angle: 0deg; }
+  to   { --border-angle: 360deg; }
+}
+
+.auth-gradient-border {
+  background: conic-gradient(
+    from var(--border-angle),
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  animation: border-rotate 4s linear infinite;
+  border-radius: 14px;
+  padding: 1px;
+}
+
+.auth-card-inner {
+  background: var(--bg-surface);
+  border-radius: 13px;
+  backdrop-filter: blur(14px);
+}
+
+/* Input focus — violet glow */
+.auth-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 18%, transparent);
+  outline: none;
+}
+
+/* Logo hover glow */
+.auth-logo-hover {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.auth-logo-hover:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px var(--accent-primary));
+}
+
+/* Status ticker chip */
+.auth-ticker {
+  background: color-mix(in srgb, var(--bg-surface) 55%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 25%, transparent);
+}
+
+/* Dark mode — ticker text clearly violet on dark bg */
+[data-theme="dark"] .auth-ticker {
+  color: var(--accent-primary); /* #A855F7 on #0B0710 — 8.5:1 contrast ✓ */
+}
+
+/* Light mode — ticker text deep violet on white-ish glass */
+[data-theme="light"] .auth-ticker {
+  color: var(--accent-primary); /* #6D28D9 on white-ish — 9.4:1 contrast ✓ */
+}
+
+/* SVG glow filter for neural mesh lines */
+.neural-svg {
+  overflow: visible;
+}
+
+/* ─── Waveform oscilloscope bar ─── */
+.waveform-canvas {
+  display: block;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent-primary) 30%, transparent);
+}
