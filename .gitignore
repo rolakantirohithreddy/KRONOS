@@ -16,3 +16,4 @@ frontend/dist/
 backend/data/*.db
 backend/data/*.sqlite
 backend/data/*.sqlite3
+backend/app/services/ml_model/*.json
